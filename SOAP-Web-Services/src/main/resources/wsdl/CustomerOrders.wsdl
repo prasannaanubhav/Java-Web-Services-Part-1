@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://trainings.ws.bharath.com"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="CustomerOrdersService"
+	targetNamespace="http://trainings.ws.bharath.com">
+	<wsdl:types>
+		<xsd:schema
+			targetNamespace="http://trainings.ws.bharath.com">
+
+			<xsd:complexType name="product">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="description" type="xsd:string" />
+					<xsd:element name="quantity" type="xsd:integer" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="order">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:integer" />
+					<xsd:element name="product" type="tns:product"
+						maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="getOrderRequest">
+
+				<xsd:sequence>
+
+					<xsd:element name="customerId" type="xsd:integer" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="getOrderInformation">
+
+				<xsd:sequence>
+					<xsd:element name="order" type="tns:order"
+						maxOccurs="unbounded" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="createOrderRequest">
+				<xsd:sequence>
+					<xsd:element name="customerId" type="xsd:integer" />
+					<xsd:element name="order" type="tns:order"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="createOrderResponse">
+				<xsd:sequence>
+					<xsd:element name="result" type="xsd:boolean"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="deleteOrderRequest">
+			<xsd:sequence>
+			<xsd:element name="customerId" type="xsd:integer"/>	
+			</xsd:sequence>	
+			</xsd:complexType>
+			
+			<xsd:complexType name="deleteOrderResponse">
+			<xsd:sequence>
+			<xsd:element name="result" type="xsd:string"/>	
+			</xsd:sequence>	
+			</xsd:complexType>
+
+<xsd:element name="getOrderRequest" type="tns:getOrderRequest"/>
+<xsd:element name="getOrderInformation" type="tns:getOrderInformation"/>
+<xsd:element name="createOrderRequest" type="tns:createOrderRequest"/>
+<xsd:element name="createOrderResponse" type="tns:createOrderResponse"/>
+<xsd:element name="deleteOrderRequest" type="tns:deleteOrderRequest"/>
+<xsd:element name="deleteOrderResponse" type="tns:deleteOrderResponse"/>
+
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="getOrderRequest">
+		<wsdl:part element="tns:getOrderRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getOrderInformation">
+		<wsdl:part element="tns:getOrderInformation" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="createOrderRequest">
+		<wsdl:part element="tns:createOrderRequest"	name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="createOrderResponse">
+		<wsdl:part element="tns:createOrderResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:message name="deleteOrderRequest">
+		<wsdl:part element="tns:deleteOrderRequest" name="parameters" />
+	</wsdl:message>
+	
+		<wsdl:message name="deleteOrderResponse">
+		<wsdl:part element="tns:deleteOrderResponse" name="parameters" />
+	</wsdl:message>
+	
+	<wsdl:portType name="CustomerOrdersPortType">
+		<wsdl:operation name="getOrders">
+			<wsdl:input message="tns:getOrderRequest" name="getOrderRequest"/>
+			<wsdl:output message="tns:getOrderInformation" name="getOrderInformation" />
+		</wsdl:operation>
+
+		<wsdl:operation name="createOrders">
+			<wsdl:input message="tns:createOrderRequest" name="createOrderRequest" />
+			<wsdl:output message="tns:createOrderResponse" name="createOrderResponse"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="deleteOrders">
+			<wsdl:input message="tns:deleteOrderRequest" name="deleteOrderRequest" />
+			<wsdl:output message="tns:deleteOrderResponse" name="deleteOrderResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="CustomerOrdersSOAPBinding" type="tns:CustomerOrdersPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getOrders">
+			<soap:operation
+				soapAction="http://trainings.ws.bharath.com/NewOperation" />
+			<wsdl:input name="getOrderRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getOrderInformation">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="createOrders">
+			<soap:operation
+				soapAction="http://trainings.ws.bharath.com/NewOperation" />
+			<wsdl:input name="createOrderRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="createOrderResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+			<wsdl:operation name="deleteOrders">
+			<soap:operation
+				soapAction="http://trainings.ws.bharath.com/NewOperation" />
+			<wsdl:input name="deleteOrderRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteOrderResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:binding>
+	
+	
+	
+	<wsdl:service name="CustomerOrders">
+		<wsdl:port binding="tns:CustomerOrdersSOAPBinding"
+			name="CustomerOrdersSOAP">
+			<soap:address location="http://localhost:8080/wsdl/service/customerservice" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

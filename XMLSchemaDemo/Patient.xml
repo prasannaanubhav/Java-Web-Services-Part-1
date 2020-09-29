@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:patient xmlns:tns="http://www.anubhav.com/Patient" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.anubhav.com/Patient Patient.xsd ">
+  <tns:id>2</tns:id>
+  <tns:name>Anubhav</tns:name>
+  <tns:age>24</tns:age>
+  <tns:dob>2001-01-01</tns:dob>
+  <tns:email>prasanna.com</tns:email>
+  <tns:gender>M</tns:gender>
+  <tns:phone>1234567890</tns:phone>
+  <tns:Payment>
+    <tns:cash>25000</tns:cash>
+  </tns:Payment>
+</tns:patient>
